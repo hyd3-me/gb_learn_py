@@ -109,6 +109,8 @@ def main():
     else:
         print('ok')
 
+def test_func():
+    print(f'hello from task01')
 
 if __name__ == '__main__':
     main()
