@@ -1,3 +1,4 @@
+import doctest
 
 
 DESC = '''
@@ -52,7 +53,7 @@ class Rectangle:
     """
 
     def __init__(self, width, height=None):
-        if width < 0:
+        if width <= 0:
             raise NegativeValueError(f'Ширина должна быть положительной, а не {width}.')
         self.width = width
         if height is None:
@@ -87,6 +88,13 @@ class Rectangle:
 
         Возвращает:
         - Rectangle: новый прямоугольник, полученный путем сложения двух исходных прямоугольников
+        >>> r1 = Rectangle(5)
+        >>> r2 = Rectangle(3, 4)
+        >>> r3 = r1 + r2
+        >>> r3.width
+        8
+        >>> r3.height
+        6.0
         """
         width = self.width + other.width
         perimeter = self.perimeter() + other.perimeter()
@@ -164,28 +172,6 @@ class Rectangle:
         """
         return f"Rectangle({self.width}, {self.height})"
 
-def est_width(num):
-    """
-    test_width(5)
-    True
-    test_width(-2)
-    Traceback (most recent call last):
-     ...
-    NegativeValueError: Ширина должна быть положительной, а не -2.
-    """
-    if num == 5:
-        r1 = Rectangle(5)
-        return r1.width == 5
-    else:
-        r4 = Rectangle(-2)
 
-def test_addition():
-    """
-    >>> test_addition()
-    6.0
-    """
-
-    r1 = Rectangle(5)
-    r2 = Rectangle(3, 4)
-    r3 = r1 + r2
-    return r3.height
+if __name__ == '__main__':
+    doctest.testmod(verbose=True)
